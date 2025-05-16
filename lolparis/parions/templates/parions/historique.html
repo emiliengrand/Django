@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md mt-8">
+  <h1 class="text-3xl font-bold mb-6 text-gray-800">Historique de vos paris</h1>
+  
+  {% if paris %}
+    <ul class="space-y-4">
+      {% for pari in paris %}
+      <li class="p-4 border border-gray-200 rounded-md hover:shadow-lg transition-shadow duration-200">
+        <p class="text-lg font-semibold text-indigo-600">{{ pari.match }}</p>
+        <p class="text-gray-700">Choix : <span class="font-medium">{{ pari.get_choix_display }}</span></p>
+        <p class="text-sm text-gray-500">Fait le {{ pari.date_pari|date:"d/m/Y H:i" }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-gray-600 italic">Vous n'avez encore fait aucun pari.</p>
+  {% endif %}
+
+  <div class="mt-8">
+    <a href="{% url 'parier' %}" 
+       class="inline-block px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors duration-200">
+      Faire un nouveau pari
+    </a>
+  </div>
+</div>
+{% endblock %}

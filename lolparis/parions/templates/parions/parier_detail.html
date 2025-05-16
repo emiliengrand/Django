@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+<h2 class="text-xl font-semibold mb-4">Parier sur : {{ match.equipe1 }} vs {{ match.equipe2 }}</h2>
+
+<form method="post" class="space-y-6">
+    {% csrf_token %}
+    
+    <div>
+        <p class="text-sm font-medium">Qui va gagner ?</p>
+        {% for radio in form.choix %}
+            <label class="block bg-white p-4 rounded-lg shadow hover:bg-gray-50 cursor-pointer">
+                {{ radio.tag }}
+                <span class="ml-2 font-medium">{{ radio.choice_label }}</span>
+            </label>
+        {% endfor %}
+    </div>
+
+    <div>
+        <label for="{{ form.score_pari.id_for_label }}" class="block mb-1 font-medium">Score exact (BO)</label>
+        {{ form.score_pari }}
+    </div>
+
+    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+        Valider mon pari
+    </button>
+</form>
+{% endblock %}

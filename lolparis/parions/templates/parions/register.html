@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Inscription{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto mt-10 p-6 bg-white rounded shadow">
+    <h2 class="text-2xl font-bold mb-6 text-center">Inscription</h2>
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+        <div class="[&>p]:mb-4 [&>p>label]:block [&>p>label]:mb-1 [&>p>label]:font-medium [&>p>input]:w-full [&>p>input]:border [&>p>input]:border-gray-300 [&>p>input]:rounded [&>p>input]:px-3 [&>p>input]:py-2 [&>p>input]:focus:outline-none [&>p>input]:focus:ring-2 [&>p>input]:focus:ring-blue-500">
+            {{ form.as_p }}
+        </div>
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+            Créer un compte
+        </button>
+    </form>
+</div>
+{% endblock %}
